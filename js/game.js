@@ -1,8 +1,14 @@
 // Create the canvas
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 540;
-canvas.height = 320;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+resizeCanvas();
+
 document.body.appendChild(canvas);
 
 // Background image
@@ -12,6 +18,7 @@ bgImage.onload = function () {
 	bgReady = true;
 };
 bgImage.src = "images/background.png";
+
 
 // Hero image
 var heroReady = false;
@@ -204,7 +211,8 @@ var update = function (modifier) {
 // Draw everything
 var render = function () {
 	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
+        
+		ctx.drawImage(bgImage, 0, 0, window.innerWidth, window.innerHeight);
 	}
 
 	if (heroReady) {
@@ -228,7 +236,7 @@ var render = function () {
 	ctx.font = "24px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+	ctx.fillText("Streak: " + monstersCaught, 32, 32);
 };
 
 // The main game loop
