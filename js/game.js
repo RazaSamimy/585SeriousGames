@@ -29,6 +29,15 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
+//Pause button
+var isPaused = false;
+var pauseReady = false;
+var pauseImage = new Image();
+pauseImage.onload = function () {
+	pauseReady = true;
+};
+pauseImage.src = "images/pause.png";
+
 // Game objects
 var hero = {
     speed: 256, // movement in pixels per second
@@ -37,7 +46,7 @@ var hero = {
 };
 var monster = {
         speed: 230 // movement in pixels per second
-}
+};
 
 var monster2 = {
      speed: 250 // movement in pixels per second
@@ -68,6 +77,22 @@ addEventListener("keydown", function (e) {
 addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 }, false);
+
+// Handle pause button click
+canvas.addEventListener("click", canvasClick, false);
+canvas.addEventListener("touchstart", canvasClick, false);
+
+function canvasClick(e) {
+	var clickX = e.clientX;
+	var clickY = e.clientY;
+	clickX -= canvas.offsetLeft;
+	clickY -= canvas.offsetTop;
+
+	if (clickX >= canvas.width-50 && clickY <= 50) {
+		isPaused = !isPaused;
+	}
+}
+
 
 // Reset the game when the player catches a monster
 var reset = function (m) {
@@ -193,6 +218,10 @@ var render = function () {
 		ctx.drawImage(monsterImage, monster4.x, monster4.y);
 		ctx.drawImage(monsterImage, monster5.x, monster5.y);
 	}
+	
+	if (pauseReady) {
+		ctx.drawImage(pauseImage, canvas.width-50, 5);
+	}
 
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
@@ -206,10 +235,12 @@ var render = function () {
 var main = function () {
 	var now = Date.now();
 	var delta = now - then;
-
-	update(delta / 1000);
+	
+	if (!isPaused) {
+		update(delta / 1000);
+	}
+	
 	render();
-
 	then = now;
 
 	// Request to do this again ASAP
