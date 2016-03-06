@@ -45,6 +45,11 @@ pauseImage.onload = function () {
 };
 pauseImage.src = "images/pause.png";
 
+//Exit button
+var exitReady = false;
+var exitImage = new Image();
+exitImage.src = "images/close-button.png";
+
 // Game objects
 var hero = {
     speed: 256, // movement in pixels per second
@@ -97,8 +102,16 @@ function canvasClick(e) {
 
 	if (clickX >= canvas.width-50 && clickY <= 50) {
 		isPaused = !isPaused;
-	}
+    }
+    if (clickX >= canvas.width-100 && clickY <= 50) {
+        if(exitReady){
+		window.location.href='userhome.html'
+	   }
+    }
 }
+
+
+
 
 
 // Reset the game when the player catches a monster
@@ -226,10 +239,16 @@ var render = function () {
 		ctx.drawImage(monsterImage, monster4.x, monster4.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
 		ctx.drawImage(monsterImage, monster5.x, monster5.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
 	}
-	
+
+    //Renders Pause Button Image
 	if (pauseReady) {
 		ctx.drawImage(pauseImage, canvas.width-50, 5);
 	}
+    
+    if (isPaused) {
+        ctx.drawImage(exitImage, canvas.width-100, 5);
+        exitReady = true;
+    }
 
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
