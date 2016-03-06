@@ -216,15 +216,15 @@ var render = function () {
 	}
 
 	if (heroReady) {
-		ctx.drawImage(heroImage, hero.x, hero.y);
+		ctx.drawImage(heroImage, hero.x, hero.y,  window.innerHeight *(1/11) , window.innerHeight *(1/11) );
 	}
 
 	if (monsterReady) {
-		ctx.drawImage(monsterImage, monster.x, monster.y);
-		ctx.drawImage(monsterImage, monster2.x, monster2.y);
-		ctx.drawImage(monsterImage, monster3.x, monster3.y);
-		ctx.drawImage(monsterImage, monster4.x, monster4.y);
-		ctx.drawImage(monsterImage, monster5.x, monster5.y);
+		ctx.drawImage(monsterImage, monster.x, monster.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster2.x, monster2.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster3.x, monster3.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster4.x, monster4.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster5.x, monster5.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
 	}
 	
 	if (pauseReady) {
