@@ -1,8 +1,14 @@
 // Create the canvas
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 540;
-canvas.height = 320;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+resizeCanvas();
+
 document.body.appendChild(canvas);
 
 // Background image
@@ -12,6 +18,7 @@ bgImage.onload = function () {
 	bgReady = true;
 };
 bgImage.src = "images/background.png";
+
 
 // Hero image
 var heroReady = false;
@@ -37,6 +44,11 @@ pauseImage.onload = function () {
 	pauseReady = true;
 };
 pauseImage.src = "images/pause.png";
+
+//Exit button
+var exitReady = false;
+var exitImage = new Image();
+exitImage.src = "images/close-button.png";
 
 // Game objects
 var hero = {
@@ -90,8 +102,16 @@ function canvasClick(e) {
 
 	if (clickX >= canvas.width-50 && clickY <= 50) {
 		isPaused = !isPaused;
-	}
+    }
+    if (clickX >= canvas.width-100 && clickY <= 50) {
+        if(exitReady){
+		window.location.href='userhome.html'
+	   }
+    }
 }
+
+
+
 
 
 // Reset the game when the player catches a monster
@@ -204,31 +224,38 @@ var update = function (modifier) {
 // Draw everything
 var render = function () {
 	if (bgReady) {
-		ctx.drawImage(bgImage, 0, 0);
+        
+		ctx.drawImage(bgImage, 0, 0, window.innerWidth, window.innerHeight);
 	}
 
 	if (heroReady) {
-		ctx.drawImage(heroImage, hero.x, hero.y);
+		ctx.drawImage(heroImage, hero.x, hero.y,  window.innerHeight *(1/11) , window.innerHeight *(1/11) );
 	}
 
 	if (monsterReady) {
-		ctx.drawImage(monsterImage, monster.x, monster.y);
-		ctx.drawImage(monsterImage, monster2.x, monster2.y);
-		ctx.drawImage(monsterImage, monster3.x, monster3.y);
-		ctx.drawImage(monsterImage, monster4.x, monster4.y);
-		ctx.drawImage(monsterImage, monster5.x, monster5.y);
+		ctx.drawImage(monsterImage, monster.x, monster.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster2.x, monster2.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster3.x, monster3.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster4.x, monster4.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
+		ctx.drawImage(monsterImage, monster5.x, monster5.y, window.innerHeight *(1/11) , window.innerHeight *(1/11));
 	}
-	
+
+    //Renders Pause Button Image
 	if (pauseReady) {
 		ctx.drawImage(pauseImage, canvas.width-50, 5);
 	}
+    
+    if (isPaused) {
+        ctx.drawImage(exitImage, canvas.width-100, 5);
+        exitReady = true;
+    }
 
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
 	ctx.font = "24px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("Goblins caught: " + monstersCaught, 32, 32);
+	ctx.fillText("Streak: " + monstersCaught, 32, 32);
 };
 
 // The main game loop
