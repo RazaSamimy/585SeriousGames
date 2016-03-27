@@ -1,6 +1,7 @@
 // Create the canvas
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
+//var dialog = document.getElementById("question");
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -8,6 +9,15 @@ var ctx = canvas.getContext("2d");
   }
 
 resizeCanvas();
+
+function showQuestion() {
+    isPaused = true;
+    document.getElementById("question").open = true;
+    document.getElementById("question").onclick = function() {
+        document.getElementById("question").open = false;
+        isPaused = false;
+    };
+}
 
 document.body.appendChild(canvas);
 
@@ -155,7 +165,7 @@ var update = function (modifier) {
 		&& monster.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
-		window.alert("Question:");
+		showQuestion();
 		reset(monster);
 	}
 	else if (
@@ -165,7 +175,7 @@ var update = function (modifier) {
 		&& monster2.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
-		window.alert("Question:");
+		showQuestion();
 		reset(monster2);
 	}
 	else if (
@@ -175,7 +185,7 @@ var update = function (modifier) {
 		&& monster3.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
-		window.alert("Question:");
+		showQuestion();
 		reset(monster3);
 	}
 	else if (
@@ -185,7 +195,7 @@ var update = function (modifier) {
 		&& monster4.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
-		window.alert("Question:");
+		showQuestion();
 		reset(monster4);
 	}
 	else if (
@@ -195,7 +205,7 @@ var update = function (modifier) {
 		&& monster5.y <= (hero.y + 32)
 	) {
 		++monstersCaught;
-		window.alert("Question:");
+		showQuestion();
 		reset(monster5);
 	}
 
