@@ -10,6 +10,8 @@ var ctx = canvas.getContext("2d");
 
 resizeCanvas();
 
+// Controls question popup
+
 function showQuestion() {
     isPaused = true;
     document.getElementById("question").open = true;
@@ -121,7 +123,23 @@ function canvasClick(e) {
 }
 
 
+// Calculates if monster and player are touching
+var isTouching = function (a, b) {
+	// Establishes coordinates of hero and monster
+	var hx1 = a.x;
+	var hx2 = a.x + 32;
+	var hy1 = a.y;
+	var hy2 = a.y + 32;
+	var mx1 = b.x;
+	var mx2 = b.x + 32;
+	var my1 = b.y;
+	var my2 = b.y + 32;
 
+	//Tests collision
+	if (mx1 < hx2 && mx2 > hx1 && my1 < hy2 && my2 > hy1) {
+	    return true;
+	}
+};
 
 
 // Reset the game when the player catches a monster
@@ -158,52 +176,27 @@ var update = function (modifier) {
     
     
 	// Are they touching?
-	if (
-		hero.x <= (monster.x + 32)
-		&& monster.x <= (hero.x + 32)
-		&& hero.y <= (monster.y + 32)
-		&& monster.y <= (hero.y + 32)
-	) {
+	if (isTouching(hero, monster)) {
 		++monstersCaught;
 		showQuestion();
 		reset(monster);
 	}
-	else if (
-		hero.x <= (monster2.x + 32)
-		&& monster2.x <= (hero.x + 32)
-		&& hero.y <= (monster2.y + 32)
-		&& monster2.y <= (hero.y + 32)
-	) {
+	else if (isTouching(hero, monster2)) {
 		++monstersCaught;
 		showQuestion();
 		reset(monster2);
 	}
-	else if (
-		hero.x <= (monster3.x + 32)
-		&& monster3.x <= (hero.x + 32)
-		&& hero.y <= (monster3.y + 32)
-		&& monster3.y <= (hero.y + 32)
-	) {
+	else if (isTouching(hero, monster3)) {
 		++monstersCaught;
 		showQuestion();
 		reset(monster3);
 	}
-	else if (
-		hero.x <= (monster4.x + 32)
-		&& monster4.x <= (hero.x + 32)
-		&& hero.y <= (monster4.y + 32)
-		&& monster4.y <= (hero.y + 32)
-	) {
+	else if (isTouching(hero, monster4)) {
 		++monstersCaught;
 		showQuestion();
 		reset(monster4);
 	}
-	else if (
-		hero.x <= (monster5.x + 32)
-		&& monster5.x <= (hero.x + 32)
-		&& hero.y <= (monster5.y + 32)
-		&& monster5.y <= (hero.y + 32)
-	) {
+	else if (isTouching(hero, monster5)) {
 		++monstersCaught;
 		showQuestion();
 		reset(monster5);
