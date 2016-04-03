@@ -14,10 +14,13 @@ resizeCanvas();
 
 function showQuestion() {
     isPaused = true;
-    document.getElementById("question").open = true;
+    questionPause = true;
+    ctx.clearRect(canvas.width-100, 5, 45, 45);
+    document.getElementById("question").style.display = 'inline';
     document.getElementById("question").onclick = function() {
-        document.getElementById("question").open = false;
+        document.getElementById("question").style.display = 'none';
         isPaused = false;
+        questionPause = false;
     };
 }
 
@@ -59,6 +62,7 @@ pauseImage.src = "images/pause.png";
 
 //Exit button
 var exitReady = false;
+var questionPause = false;
 var exitImage = new Image();
 exitImage.src = "images/close-button.png";
 
@@ -107,18 +111,18 @@ canvas.addEventListener("click", canvasClick, false);
 canvas.addEventListener("touchstart", canvasClick, false);
 
 function canvasClick(e) {
-	var clickX = e.clientX;
-	var clickY = e.clientY;
-	clickX -= canvas.offsetLeft;
-	clickY -= canvas.offsetTop;
+    var clickX = e.clientX;
+    var clickY = e.clientY;
+    clickX -= canvas.offsetLeft;
+    clickY -= canvas.offsetTop;
 
-	if (clickX >= canvas.width-50 && clickY <= 50) {
-		isPaused = !isPaused;
+    if (clickX >= canvas.width-50 && clickY <= 50 && questionPause == false) {
+        isPaused = !isPaused;
     }
-    if (clickX >= canvas.width-100 && clickY <= 50) {
+    if (clickX >= canvas.width-100 && clickX < canvas.width-50 && clickY <= 50) {
         if(exitReady){
-		window.location.href='userhome.html'
-	   }
+            window.location.href='userhome.html'
+        }
     }
 }
 
@@ -245,12 +249,16 @@ var render = function () {
 
     //Renders Pause Button Image
 	if (pauseReady) {
-		ctx.drawImage(pauseImage, canvas.width-50, 5);
+            if (!questionPause) {
+                ctx.drawImage(pauseImage, canvas.width-50, 5);
+            }
 	}
     
     if (isPaused) {
-        ctx.drawImage(exitImage, canvas.width-100, 5);
-        exitReady = true;
+        if (!questionPause) {
+            ctx.drawImage(exitImage, canvas.width-100, 5);
+            exitReady = true;
+        }
     }
 
 	// Score
