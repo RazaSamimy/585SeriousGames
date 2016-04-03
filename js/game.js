@@ -263,7 +263,7 @@ var render = function () {
 
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
-	ctx.font = "24px Helvetica";
+	ctx.font = "30px VT323";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Streak: " + monstersCaught, 32, 32);
