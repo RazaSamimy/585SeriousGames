@@ -17,11 +17,55 @@ function showQuestion() {
     questionPause = true;
     ctx.clearRect(canvas.width-100, 5, 45, 45);
     document.getElementById("question").style.display = 'inline';
-    document.getElementById("question").onclick = function() {
+
+    // A button click
+    document.getElementById("abutton").onclick = function() {
         document.getElementById("question").style.display = 'none';
         isPaused = false;
         questionPause = false;
     };
+
+    // B button click
+    document.getElementById("bbutton").onclick = function() {
+        document.getElementById("question").style.display = 'none';
+        isPaused = false;
+        questionPause = false;
+    };
+
+    // C button click
+    document.getElementById("cbutton").onclick = function() {
+        document.getElementById("question").style.display = 'none';
+        isPaused = false;
+        questionPause = false;
+    };
+
+    // D button click
+    document.getElementById("dbutton").onclick = function() {
+        document.getElementById("question").style.display = 'none';
+        isPaused = false;
+        questionPause = false;
+    };
+}
+
+// Controls pause menu
+
+function pauseMenu() {
+    if (isPaused && !questionPause) {
+        document.getElementById("pausemenu").style.display = 'inline';
+
+        // Resume button click
+        document.getElementById("resume").onclick = function() {
+            document.getElementById("pausemenu").style.display = 'none';
+            isPaused = false;
+        }; 
+
+        // Exit button click
+        document.getElementById("exit").onclick = function() {
+            if(exitReady){
+                window.location.href='userhome.html'
+            }
+        }; 
+    }
 }
 
 document.body.appendChild(canvas);
@@ -60,11 +104,9 @@ pauseImage.onload = function () {
 };
 pauseImage.src = "images/pause.png";
 
-//Exit button
+//Exit variables
 var exitReady = false;
 var questionPause = false;
-var exitImage = new Image();
-exitImage.src = "images/close-button.png";
 
 // Game objects
 var hero = {
@@ -92,9 +134,6 @@ var monster5 = {
 
 var monstersCaught = 0;
 
-// Question Variable
-var popUpList = '<div id="dialog">Question:<br><input type="radio">A<br><input type="radio">B<br><input type="radio">C</div>';
-
 // Handle keyboard controls
 var keysDown = {};
 
@@ -116,13 +155,9 @@ function canvasClick(e) {
     clickX -= canvas.offsetLeft;
     clickY -= canvas.offsetTop;
 
-    if (clickX >= canvas.width-50 && clickY <= 50 && questionPause == false) {
+    if (clickX >= canvas.width-50 && clickY <= 50 && !questionPause && !isPaused) {
         isPaused = !isPaused;
-    }
-    if (clickX >= canvas.width-100 && clickX < canvas.width-50 && clickY <= 50) {
-        if(exitReady){
-            window.location.href='userhome.html'
-        }
+        pauseMenu();
     }
 }
 
@@ -165,12 +200,6 @@ var update = function (modifier) {
 		  hero.y += hero.speed * modifier;
         }
 	}
-//	if (37 in keysDown) { // Player holding left
-//		hero.x -= hero.speed * modifier;
-//	}
-//	if (39 in keysDown) { // Player holding right
-//		hero.x += hero.speed * modifier;
-//	}
 
     monster.x -= monster.speed * modifier;
     monster2.x -= monster2.speed * modifier;
@@ -249,16 +278,13 @@ var render = function () {
 
     //Renders Pause Button Image
 	if (pauseReady) {
-            if (!questionPause) {
+            if (!questionPause && !isPaused) {
                 ctx.drawImage(pauseImage, canvas.width-50, 5);
             }
 	}
     
-    if (isPaused) {
-        if (!questionPause) {
-            ctx.drawImage(exitImage, canvas.width-100, 5);
-            exitReady = true;
-        }
+    if (isPaused && !questionPause) {
+        exitReady = true;
     }
 
 	// Score
