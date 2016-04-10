@@ -188,6 +188,17 @@ var reset = function (m) {
 	m.x = canvas.width;
 };
 
+
+var zig = 1;
+var sArray = [100];
+
+for (var i = 0; i < 100; i++) {
+    sArray[i] = (canvas.height*.5 + canvas.height*(1/11) * Math.sin(2 * Math.PI * i / 100));
+}
+
+var sArrayIndex = 0; 
+console.log(sArray);
+
 // Update game objects
 var update = function (modifier) {
 	if (38 in keysDown) { // Player holding up
@@ -202,7 +213,33 @@ var update = function (modifier) {
 	}
 
     monster.x -= monster.speed * modifier;
+    
+    if(zig == 1){
+    monster.y -= monster.speed * modifier;
+        if(monster.y <= 0 + canvas.height*(1/11)){ zig = 0; 
+                         console.log( zig);   }
+    }
+    
+     if(zig == 0){
+    monster.y += monster.speed * modifier;
+        if(monster.y >= canvas.height-canvas.height*(1/11) ){ zig = 1; 
+                                        console.log( zig); }
+    }
+    
+    
+    
+    
     monster2.x -= monster2.speed * modifier;
+    
+    monster2.y = sArray[sArrayIndex];
+          console.log(monster2.y);
+
+    sArrayIndex++;
+
+    if(sArrayIndex==100){
+        sArrayIndex=0;
+    }
+    
     monster3.x -= monster3.speed * modifier;
     monster4.x -= monster4.speed * modifier;
     monster5.x -= monster5.speed * modifier;
