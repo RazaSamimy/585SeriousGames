@@ -125,18 +125,18 @@ var monster2 = {
     type: 2
 };
 var monster3 = {
-    speed: 270 // movement in pixels per second 
+    speed: 270, // movement in pixels per second 
     type: 0,
     edge: 0
 };
 var monster4 = {
-    speed: 290 // movement in pixels per second
+    speed: 290, // movement in pixels per second
     type: 0,
     edge: 0
 };
 
 var monster5 = {
-    speed: 310 // movement in pixels per second
+    speed: 310, // movement in pixels per second
     type: 0,
     edge: 0
 };
