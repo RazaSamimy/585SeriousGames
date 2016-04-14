@@ -15,7 +15,7 @@ resizeCanvas();
 function showQuestion() {
     isPaused = true;
     questionPause = true;
-    ctx.clearRect(canvas.width - 100, 5, 45, 45);
+    document.getElementById("pause").style.display = "none";
     document.getElementById("question").style.display = 'inline';
 
     // A button click
@@ -154,18 +154,12 @@ addEventListener("keyup", function(e) {
     delete keysDown[e.keyCode];
 }, false);
 
-// Handle pause button click
-canvas.addEventListener("click", canvasClick, false);
-canvas.addEventListener("touchstart", canvasClick, false);
+// Pause function
 
-function canvasClick(e) {
-    var clickX = e.clientX;
-    var clickY = e.clientY;
-    clickX -= canvas.offsetLeft;
-    clickY -= canvas.offsetTop;
-
-    if (clickX >= canvas.width - 50 && clickY <= 50 && !questionPause && !isPaused) {
+function pauseGame() {
+    if (!questionPause && !isPaused) {
         isPaused = !isPaused;
+        document.getElementById("pause").style.display = "none";
         pauseMenu();
     }
 }
@@ -366,10 +360,10 @@ var render = function() {
         ctx.drawImage(monsterImage, monster5.x, monster5.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
     }
 
-    //Renders Pause Button Image
+    //Displays pause button
     if (pauseReady) {
         if (!questionPause && !isPaused) {
-            ctx.drawImage(pauseImage, canvas.width - 50, 5);
+            document.getElementById("pause").style.display = "block";
         }
     }
 
@@ -378,11 +372,9 @@ var render = function() {
     }
 
     // Score
-    ctx.fillStyle = "rgb(250, 250, 250)";
-    ctx.font = "30px VT323";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
-    ctx.fillText("Streak: " + monstersCaught, 32, 32);
+    if(document.getElementById("score")) {
+        document.getElementById("score").innerHTML = "Score: " + monstersCaught;
+    }
 };
 
 // The main game loop
@@ -396,6 +388,7 @@ var main = function() {
 
     render();
     then = now;
+    
 
     // Request to do this again ASAP
     requestAnimationFrame(main);
