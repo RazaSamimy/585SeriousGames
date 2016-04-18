@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+               <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+               <link rel="stylesheet" type="text/css" href="index.css">
 		<meta charset="utf-8">
 		<title>Login Screen</title>
 	</head>
 	<body>
+       <div id="maincontent">
         <h1>Adaptive Quiz</h1>
-        <form>
-  User name:<br>
-  <input type="text" name="username"><br>
-  User password:<br>
-  <input type="password" name="psw">
-    <br><br>
+        <form id="loginform">
+  Username:<br>
+  <input type="text" name="username" id="username"><br>
+  Password:<br>
+  <input type="password" name="psw" id="psw">
+    <br>
     <FORM>
-    <INPUT Type="BUTTON" Value="Login"  Onclick="window.location.href='userhome.html'">
+    <INPUT Type="BUTTON" Value="Login"  Onclick="window.location.href='userhome.html'" class="bttn">
 </FORM>
         
     <FORM>
-    <INPUT Type="BUTTON" Value="Create Account"  Onclick="window.location.href='accountcreation.html'">
+    <INPUT Type="BUTTON" Value="Create Account"  Onclick="window.location.href='accountcreation.html'" class="bttn">
 </FORM>
     
 </form> 
+        </div>
 	</body>
 </html>
