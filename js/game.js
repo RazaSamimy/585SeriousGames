@@ -669,12 +669,12 @@ var render = function() {
         document.getElementById("score").innerHTML = "Score: " + monstersCaught;
     }
 
-
     // Health
     
      if(document.getElementById("hp")!= null){
     document.getElementById("hp").style.width = health + "%";
     }
+
 };
 
 // The main game loop
