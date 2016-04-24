@@ -75,12 +75,15 @@ function pauseMenu() {
         document.getElementById("music").onclick = function() {
             if(musicToggle == true){    
                 document.getElementById("gameMusic").pause();
-                musicToggle = false}
+                musicToggle = false;
+                document.getElementById("music").value = "Music Off";
+            }
             
             else{    
                 document.getElementById("gameMusic").play();
-                musicToggle = true }
-             
+                document.getElementById("music").value = "Music On";              
+                musicToggle = true;
+            }
             
         };
 
@@ -670,7 +673,15 @@ var render = function() {
      if(document.getElementById("hp")!= null){
     document.getElementById("hp").style.width = health + "%";
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> RazaSamimy/master
+=======
+        
+>>>>>>> RazaSamimy/master
 };
 
 // The main game loop
