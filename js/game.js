@@ -673,15 +673,6 @@ var render = function() {
      if(document.getElementById("hp")!= null){
     document.getElementById("hp").style.width = health + "%";
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> RazaSamimy/master
-=======
-        
->>>>>>> RazaSamimy/master
 };
 
 // The main game loop
