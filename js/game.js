@@ -673,7 +673,11 @@ var render = function() {
      if(document.getElementById("hp")!= null){
     document.getElementById("hp").style.width = health + "%";
     }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> RazaSamimy/master
 };
 
 // The main game loop
