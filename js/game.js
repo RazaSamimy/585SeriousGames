@@ -87,13 +87,79 @@ heroImage.onload = function() {
 };
 heroImage.src = "images/hero.png";
 
-// Monster image
+// Goblin Green image
 var monsterReady = false;
 var monsterImage = new Image();
 monsterImage.onload = function() {
     monsterReady = true;
+
 };
 monsterImage.src = "images/monster.png";
+
+// Goblin Blue
+var goblinBlueReady = false;
+var goblinBlueImage = new Image();
+goblinBlueImage.onload = function() {
+    goblinBlueReady = true;
+
+};
+goblinBlueImage.src = "images/goblinBlue.png";
+
+// Goblin Red
+var goblinRedReady = false;
+var goblinRedImage = new Image();
+goblinRedImage.onload = function() {
+    goblinRedReady = true;
+
+};
+goblinRedImage.src = "images/goblinRed.png";
+
+// Snake Green
+var snakeGreenReady = false;
+var snakeGreenImage = new Image();
+snakeGreenImage.onload = function() {
+    snakeBlueReady = true;
+
+};
+snakeGreenImage.src = "images/snakeGreen.png";
+
+// Snake Blue
+var snakeBlueReady = false;
+var snakeBlueImage = new Image();
+snakeBlueImage.onload = function() {
+    snakeBlueReady = true;
+
+};
+snakeBlueImage.src = "images/snakeBlue.png";
+
+// Snake Red
+var snakeRedReady = false;
+var snakeRedImage = new Image();
+snakeRedImage.onload = function() {
+    snakeRedReady = true;
+
+};
+snakeRedImage.src = "images/snakeRed.png";
+
+// Spider Green
+var spiderBlackReady = false;
+var spiderBlackImage = new Image();
+spiderBlackImage.onload = function() {
+    spiderBlueReady = true;
+
+};
+spiderBlackImage.src = "images/spiderBlack.png";
+
+// Flame Red
+var flameRedReady = false;
+var flameRedImage = new Image();
+flameRedImage.onload = function() {
+    flameRedReady = true;
+
+};
+flameRedImage.src = "images/flameRed.png";
+
+
 
 //Pause button
 var isPaused = false;
@@ -116,30 +182,157 @@ var hero = {
 };
 var monster = {
     speed: 230, // movement in pixels per second
+    yOrigin: 0,
     type: 1,
-    edge: 0
+    edge: 0,
+    sCurve: [100],
+    sCurveIndex: 0
 };
 
 var monster2 = {
     speed: 250, // movement in pixels per second
-    type: 2
+    yOrigin: 0,
+    type: 2,
+    edge: 0,
+    sCurve: [100],
+    sCurveIndex: 0
 };
 var monster3 = {
     speed: 270, // movement in pixels per second 
-    type: 0,
-    edge: 0
+    yOrigin: 0,
+    type: 1,
+    edge: 0,
+    sCurve: [100],
+    sCurveIndex: 0
 };
 var monster4 = {
     speed: 290, // movement in pixels per second
-    type: 0,
-    edge: 0
+    yOrigin: 0,
+    type: 2,
+    edge: 0,
+    sCurve: [100],
+    sCurveIndex: 0
 };
 
 var monster5 = {
     speed: 310, // movement in pixels per second
+    yOrigin: 0,
     type: 0,
-    edge: 0
+    edge: 0,
+    sCurve: [100],
+    sCurveIndex: 0
 };
+
+
+// Monster Type Number to Image
+var monsterType2Image = function(monsterSelected) {
+    if (monsterSelected.type == 0) {
+        return monsterImage;
+    }
+
+    if (monsterSelected.type == 1) {
+        return goblinBlueImage;
+    }
+
+    if (monsterSelected.type == 2) {
+        return goblinRedImage;
+    }
+    
+      if (monsterSelected.type == 3) {
+        return snakeGreenImage;
+    }
+
+    if (monsterSelected.type == 4) {
+        return snakeBlueImage;
+    }
+
+    if (monsterSelected.type == 5) {
+        return snakeRedImage;
+    }
+    
+      if (monsterSelected.type == 6) {
+        return spiderBlackImage;
+    }
+
+    if (monsterSelected.type == 7) {
+        return flameRedImage;
+    }
+
+}
+
+
+var monsterType2ImageSizeH = function(monsterSelected) {
+    if (monsterSelected.type == 0) {
+        return window.innerHeight * ( 1 / 15);
+    }
+
+    if (monsterSelected.type == 1) {
+        return window.innerHeight * (1 / 15);
+    }
+
+    if (monsterSelected.type == 2) {
+        return window.innerHeight * (1 / 15);
+    }
+    
+      if (monsterSelected.type == 3) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+
+    if (monsterSelected.type == 4) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+
+    if (monsterSelected.type == 5) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+    
+      if (monsterSelected.type == 6) {
+        return 1.4*window.innerHeight * (1 / 9);
+    }
+
+    if (monsterSelected.type == 7) {
+        return 1.4*window.innerHeight * (1 / 15);
+    }
+
+
+}
+
+var monsterType2ImageSizeW = function(monsterSelected) {
+    if (monsterSelected.type == 0) {
+        return window.innerHeight * ( 1 / 15);
+    }
+
+    if (monsterSelected.type == 1) {
+        return window.innerHeight * (1 / 15);
+    }
+
+    if (monsterSelected.type == 2) {
+        return window.innerHeight * (1 / 15);
+    }
+    
+      if (monsterSelected.type == 3) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+
+    if (monsterSelected.type == 4) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+
+    if (monsterSelected.type == 5) {
+        return 1.2*window.innerHeight * (1 / 11);
+    }
+    
+      if (monsterSelected.type == 6) {
+        return 1.4*window.innerHeight * (1 / 9);
+    }
+
+    if (monsterSelected.type == 7) {
+        return 1.4*window.innerHeight * (2 / 15);
+    }
+
+
+}
+
 
 var monstersCaught = 0;
 
@@ -177,97 +370,94 @@ var isTouching = function(a, b) {
     var my1 = b.y;
     var my2 = b.y + 32;
 
+    if(b.type== 7 ){
+           var hx1 = a.x;
+    var hx2 = a.x + 64;
+    var hy1 = a.y;
+    var hy2 = a.y + 64;
+    var mx1 = b.x;
+    var mx2 = b.x + 64;
+    var my1 = b.y;
+    var my2 = b.y + 64;
+        
+    }
     //Tests collision
     if (mx1 < hx2 && mx2 > hx1 && my1 < hy2 && my2 > hy1) {
         return true;
     }
 };
 
+// Random Number Function
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // Reset the game when the player catches a monster
 var reset = function(m) {
     // Throw the monster somewhere on the screen randomly
     m.y = 32 + (Math.random() * (canvas.height - 64));
     m.x = canvas.width;
+    m.yOrigin = m.y;
+    m.type = getRandomInt(0, 7)
 };
+
+
 
 // S Movement Pattern
 var sArray = [100];
 var sArrayAvg = 0
-var yOrigin = [7]
 
 for (var i = 0; i < 100; i++) {
     sArray[i] = (canvas.height * .5 + canvas.height * (1 / 11) * Math.sin(2 * Math.PI * i / 100));
     sArrayAvg += sArray[i];
-    
+
 }
 
-for (var i = 2; i <= 9; i++) {
-   
-    yOrigin[i] = canvas.height * i/11;
-}
+monster.sCurve = sArray;
+monster2.sCurve = sArray;
+monster3.sCurve = sArray;
+monster4.sCurve = sArray;
+monster5.sCurve = sArray;
 
-function shuffle(array) {
-  var currentIndex = array.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-
-  return array;
-}
-
-shuffle(yOrigin);
-var sArrayIndex = 0;
-var currentYOrigin=0;
 // Movement Pattern Function
 
 var movement = function(monsterSelected, modifier) {
-    
-    if (monsterSelected.type == 1) {
 
-              if(monsterSelected.edge == 1){
-        monsterSelected.y -= monsterSelected.speed * modifier;
-            if(monsterSelected.y <= 0 + canvas.height*(1/11)){ 
-                monsterSelected.edge = 0;  }
-        }
-        
-         if(monsterSelected.edge == 0){
-        monsterSelected.y += monsterSelected.speed * modifier;
-            if(monsterSelected.y >= canvas.height-canvas.height*(2/11)){ 
-                monsterSelected.edge = 1;  }
-        }
-        
+    if (monsterSelected.type <= 2 || monsterSelected.type == 7) {
         return monsterSelected;
     }
-    
-    if (monsterSelected.type == 2) {
-        monsterSelected.y =  yOrigin[currentYOrigin] + sArray[sArrayIndex] - sArrayAvg/100 ;
-        sArrayIndex++;
-    //    console.log(sArray[sArrayIndex]);
 
-        if(monsterSelected.x <= 0){
-        currentYOrigin++; 
-        if ( currentYOrigin == 7) {
-         currentYOrigin = 0; }
+    if (monsterSelected.type == 6) {
+
+        if (monsterSelected.edge == 1) {
+            monsterSelected.y -= monsterSelected.speed * modifier;
+            if (monsterSelected.y <= 0 + canvas.height * (1 / 11)) {
+                monsterSelected.edge = 0;
+            }
         }
-        
-    if (sArrayIndex == 100) {
-        sArrayIndex = 0; }
-        
+
+        if (monsterSelected.edge == 0) {
+            monsterSelected.y += monsterSelected.speed * modifier;
+            if (monsterSelected.y >= canvas.height - canvas.height * (2 / 11)) {
+                monsterSelected.edge = 1;
+            }
+        }
+
         return monsterSelected;
     }
-    
-    
+
+    if (monsterSelected.type == 3 || monsterSelected.type == 4 || monsterSelected.type == 5 ) {
+        monsterSelected.y = monsterSelected.yOrigin + monsterSelected.sCurve[monsterSelected.sCurveIndex] - sArrayAvg / 100;
+        monsterSelected.sCurveIndex++;
+
+        if (monsterSelected.sCurveIndex == 100) {
+            monsterSelected.sCurveIndex = 0;
+        }
+
+        return monsterSelected;
+    }
+
+
 }
 
 //Update Function
@@ -285,15 +475,20 @@ var update = function(modifier) {
     }
 
     monster.x -= monster.speed * modifier;
-    monster= movement(monster, modifier);
-    
+    monster = movement(monster, modifier);
+
     monster2.x -= monster2.speed * modifier;
     monster2 = movement(monster2, modifier);
 
 
     monster3.x -= monster3.speed * modifier;
+    monster3 = movement(monster3, modifier);
+
     monster4.x -= monster4.speed * modifier;
+    monster4 = movement(monster4, modifier);
+
     monster5.x -= monster5.speed * modifier;
+    monster5 = movement(monster5, modifier);
 
 
     // Are they touching?
@@ -353,11 +548,11 @@ var render = function() {
     }
 
     if (monsterReady) {
-        ctx.drawImage(monsterImage, monster.x, monster.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
-        ctx.drawImage(monsterImage, monster2.x, monster2.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
-        ctx.drawImage(monsterImage, monster3.x, monster3.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
-        ctx.drawImage(monsterImage, monster4.x, monster4.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
-        ctx.drawImage(monsterImage, monster5.x, monster5.y, window.innerHeight * (1 / 11), window.innerHeight * (1 / 11));
+        ctx.drawImage(monsterType2Image(monster), monster.x, monster.y,    monsterType2ImageSizeH(monster), monsterType2ImageSizeW(monster));
+        ctx.drawImage(monsterType2Image(monster2), monster2.x, monster2.y, monsterType2ImageSizeH(monster2), monsterType2ImageSizeW(monster2));
+        ctx.drawImage(monsterType2Image(monster3), monster3.x, monster3.y, monsterType2ImageSizeH(monster3), monsterType2ImageSizeW(monster3));
+        ctx.drawImage(monsterType2Image(monster4), monster4.x, monster4.y, monsterType2ImageSizeH(monster4), monsterType2ImageSizeW(monster4));
+        ctx.drawImage(monsterType2Image(monster5), monster5.x, monster5.y, monsterType2ImageSizeH(monster5), monsterType2ImageSizeW(monster5));
     }
 
     //Displays pause button
@@ -372,7 +567,7 @@ var render = function() {
     }
 
     // Score
-    if(document.getElementById("score")) {
+    if (document.getElementById("score")) {
         document.getElementById("score").innerHTML = "Score: " + monstersCaught;
     }
 };
@@ -388,7 +583,7 @@ var main = function() {
 
     render();
     then = now;
-    
+
 
     // Request to do this again ASAP
     requestAnimationFrame(main);
