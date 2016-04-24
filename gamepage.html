@@ -9,6 +9,10 @@
 	<body>
 		<script src="js/game.js"></script>
         <audio id="gameMusic" autoplay="autoplay" loop ><source src="finalact.wav" type="audio/mpeg"/> </audio>
+        <div id="hud">
+               		<div id="healthbar"><span id="hp">&nbsp;</span></div>
+               		<div id="score">Score: 0</div>
+               </div>
 		<div id="question">
 			<p id="qtitle">Question</p>
 			<input type="button" value="A" class="qbutton" id="abutton">
@@ -24,10 +28,7 @@
              <input type="button" value="Music On" class="pausebutton" id="music">
 		</div>
 
-               <div id="hud">
-               		<div id="healthbar"><span id="hp">&nbsp;</span></div>
-               		<div id="score">Score: 0</div>
-               </div>
+
 
                <div id="pause" onclick="pauseGame()"><img src="images/pause.png" id="pausebutton"></img></div>
 	</body>

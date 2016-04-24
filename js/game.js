@@ -14,9 +14,13 @@ resizeCanvas();
 
 window.onload = function() {
   document.getElementById("gameMusic"); 
+  document.getElementById("hp"); 
 };
 
+
+var health = 105; 
 var musicToggle = true;
+
 
 // Controls question popup
 
@@ -357,6 +361,42 @@ var monsterType2ImageSizeW = function(monsterSelected) {
 
 }
 
+var monsterType2Damage = function(monsterSelected) {
+    if (monsterSelected.type == 0) {
+        return .5;
+    }
+
+    if (monsterSelected.type == 1) {
+        return 1;
+    }
+
+    if (monsterSelected.type == 2) {
+        return 1.5;
+    }
+    
+      if (monsterSelected.type == 3) {
+        return .75;
+    }
+
+    if (monsterSelected.type == 4) {
+        return 1.5;
+    }
+
+    if (monsterSelected.type == 5) {
+        return 3*.75;
+    }
+    
+      if (monsterSelected.type == 6) {
+        return 3;
+    }
+
+    if (monsterSelected.type == 7) {
+        return 5;
+    }
+
+
+}
+
 
 var monstersCaught = 0;
 
@@ -443,7 +483,10 @@ var reset = function(m) {
     m.y = 32 + (Math.random() * (canvas.height - 64));
     m.x = canvas.width;
     m.yOrigin = m.y;
-    m.type = getRandomInt(0, 7)
+    health = health- monsterType2Damage(m);
+    console.log(health);
+    
+    m.type = getRandomInt(0, 7);
 };
 
 
@@ -571,6 +614,7 @@ var update = function(modifier) {
 
     if (monster.x <= 0) {
         reset(monster);
+
     }
 
     if (monster2.x <= 0) {
@@ -624,7 +668,13 @@ var render = function() {
     if (document.getElementById("score")) {
         document.getElementById("score").innerHTML = "Score: " + monstersCaught;
     }
- 
+
+
+    // Health
+    
+     if(document.getElementById("hp")!= null){
+    document.getElementById("hp").style.width = health + "%";
+    }
 };
 
 // The main game loop
