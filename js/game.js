@@ -674,7 +674,11 @@ var render = function() {
     document.getElementById("hp").style.width = health + "%";
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> RazaSamimy/master
 =======
         
 >>>>>>> RazaSamimy/master
