@@ -668,7 +668,6 @@ var render = function() {
     if (document.getElementById("score")) {
         document.getElementById("score").innerHTML = "Score: " + monstersCaught;
     }
-
     // Health
     
      if(document.getElementById("hp")!= null){
