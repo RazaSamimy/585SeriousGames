@@ -176,7 +176,7 @@ var questionPause = false;
 
 // Game objects
 var hero = {
-    speed: 256, // movement in pixels per second
+    speed: 500, // movement in pixels per second
     x: 100,
     y: 150
 };
