@@ -10,6 +10,14 @@ function resizeCanvas() {
 
 resizeCanvas();
 
+// Music Controls
+
+window.onload = function() {
+  document.getElementById("gameMusic"); 
+};
+
+var musicToggle = true;
+
 // Controls question popup
 
 function showQuestion() {
@@ -57,6 +65,19 @@ function pauseMenu() {
         document.getElementById("resume").onclick = function() {
             document.getElementById("pausemenu").style.display = 'none';
             isPaused = false;
+        };
+        
+         // Music button click
+        document.getElementById("music").onclick = function() {
+            if(musicToggle == true){    
+                document.getElementById("gameMusic").pause();
+                musicToggle = false}
+            
+            else{    
+                document.getElementById("gameMusic").play();
+                musicToggle = true }
+             
+            
         };
 
         // Exit button click
