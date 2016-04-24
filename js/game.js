@@ -154,6 +154,27 @@ addEventListener("keyup", function(e) {
     delete keysDown[e.keyCode];
 }, false);
 
+// Handles touch input
+var targetY = 0;
+var targetActive = false;
+
+canvas.addEventListener("touchstart", function(evt) {
+    evt.preventDefault();
+    targetY = evt.changedTouches[0].clientY;
+    targetActive = true;
+}, false);
+
+canvas.addEventListener("touchend", function(evt) {
+    evt.preventDefault();
+    targetActive = false;
+}, false);
+
+canvas.addEventListener("touchmove", function(evt) {
+    evt.preventDefault();
+    targetY = evt.changedTouches[0].clientY;
+    targetActive = true;
+}, false);
+
 // Pause function
 
 function pauseGame() {
@@ -280,6 +301,15 @@ var update = function(modifier) {
     }
     if (40 in keysDown) { // Player holding down
         if (hero.y < canvas.height - 64) {
+            hero.y += hero.speed * modifier;
+        }
+    }
+
+    if (targetActive == true) {
+        if (hero.y > targetY && hero.y >= canvas.height - canvas.height + 32) {
+            hero.y -= hero.speed * modifier;
+        }
+        if (hero.y < targetY && hero.y < canvas.height - 64) {
             hero.y += hero.speed * modifier;
         }
     }
