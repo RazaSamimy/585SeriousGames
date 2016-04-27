@@ -442,6 +442,17 @@ function pauseGame() {
     }
 }
 
+// Lose function
+
+function loseScreen() {
+    pauseGame();
+    document.getElementById("pausemenu").style.display = 'none';
+    document.getElementById("losemenu").style.display = 'inline';
+    document.getElementById("tryagain").onclick = function() {
+        window.location.href = 'userhome.html'
+    };
+}
+
 
 // Calculates if monster and player are touching
 var isTouching = function(a, b) {
@@ -671,7 +682,12 @@ var render = function() {
     // Health
     
      if(document.getElementById("hp")!= null){
-    document.getElementById("hp").style.width = health + "%";
+        if(health <= 0) {
+            loseScreen();
+        }
+        else {
+            document.getElementById("hp").style.width = health + "%";
+        }
     }
 };
 
